@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define TAM 2
+
+void leiaM(int m[][TAM], int tamanho) {
+    int i, j;
+    for(i=0; i<tamanho; i++)
+        for(j=0; j<TAM; j++)
+            scanf("%d", &m[i][j]);
+}
+
+void addM(int m[][TAM], int a[][TAM], int b[][TAM], int tamanho) {
+    int i, j;
+    for(i=0; i<tamanho; i++)
+        for(j=0; j<TAM; j++)
+            m[i][j] = a[i][j] + b[i][j];
+}
+
+void subM(int m[][TAM], int a[][TAM], int b[][TAM], int tamanho) {
+    int i, j;
+    for(i=0; i<tamanho; i++)
+        for(j=0; j<TAM; j++)
+            m[i][j] = a[i][j] - b[i][j];
+}
+
+void multM(int m[][TAM], int a[][TAM], int b[][TAM], int tamanho) {
+    int i, j, k, soma;
+    for(i=0; i<tamanho; i++)
+        for(j=0; j<TAM; j++) {
+            soma = 0;
+            for(k=0; k<TAM; k++)
+                soma += a[i][k] * b[k][j];
+            m[i][j] = soma;
+        }
+}
+
+void printM(int m[][TAM], int tamanho) {
+    int i, j;
+    for(i=0; i<tamanho; i++) {
+        for(j=0; j<TAM; j++)
+            printf("%5d", m[i][j]);
+        printf("\n");
+    }
+}
+
+int main() {
+    int a[TAM][TAM], b[TAM][TAM], c[TAM][TAM];
+    leiaM(a, TAM);
+    leiaM(b, TAM);
+    multM(c, a, b, TAM); // c = a * b
+    printM(c, TAM);
+    return 0;
+}
